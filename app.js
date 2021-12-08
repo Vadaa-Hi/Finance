@@ -16,12 +16,13 @@ console.log("Дэлгэцнээс өгөгдлөө авах хэсэг:");
 // 3. Олж авсан өгөгдлүүдээ веб дээрээ тохирох хэсэгт нь гаргана.
 // 4. Төсвийг тооцоолно. 
 // 5. Эцсийн үлдэгдэль тооцоог дэлгэцэнд гаргана.
-}
+};
 
     document.querySelector(".add__btn").addEventListener("click", function(){
         ctrlAddItem();
 
     });
+    //
 document.addEventListener("keypress", function(event){
 if (event.keyCode === 13 || event.which === 13) {ctrlAddItem();}
 })
