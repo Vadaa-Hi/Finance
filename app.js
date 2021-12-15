@@ -7,7 +7,11 @@ var DOMstrings = {
     inputValue: ".add__value",
     addBtn: ".add__btn",
     incomeList: ".income__list",
-    expenseList: ".expenses__list"
+    expenseList: ".expenses__list",
+    tusuvLabel: ".budget__value",
+    incomeLabel: ".budget__income--value",
+    expeseLabel: ".budget__expenses--value",
+    percentageLabel:".budget__expenses--percentage"
 
 };
 
@@ -35,6 +39,22 @@ clearFields: function(){
     // for (var i=0; i< fieldsArr.length; i++ ){
     //     fieldsArr[i].value='';
     // } 
+
+},
+
+ tusviigUzuuleh: function(tusuv){
+    document.querySelector(DOMstrings.tusuvLabel).textContent = tusuv.tusuv;
+    document.querySelector(DOMstrings.incomeLabel).textContent = tusuv.totalInc;
+    document.querySelector(DOMstrings.expeseLabel).textContent = tusuv.totalExp;
+
+    if(tusuv.huvi !== 0)
+    {
+        document.querySelector(DOMstrings.percentageLabel).textContent=tusuv.huvi+'%';
+    }
+    else
+    {
+        document.querySelector(DOMstrings.percentageLabel).textContent=tusuv.huvi;
+    }
 
 },
 
@@ -112,8 +132,8 @@ var financeController = (function(){
             return {
                 tusuv: data.tusuv,
                 huvi: data.huvi,
-                totolInc: data.totals.inc,
-                totolExp: data.totals.exp
+                totalInc: data.totals.inc,
+                totalExp: data.totals.exp
             }
         },
 
@@ -139,7 +159,7 @@ var financeController = (function(){
         };
       
 })();
-//14.11  lesson 67g 
+ 
 
 // Програмын холбогч контроллёр
 var appController = (function(uiController,financeController){
@@ -157,7 +177,7 @@ financeController.tusuvTootsooloh();
 // 5. Эцсийн үлдэгдэл тооцоог дэлгэцэнд гаргана.
 var tusuv = financeController.tusviigAvah();
 //6. Төсвийн тооцоог дэлгэцэнд гаргана.
-console.log(tusuv);
+uiController.tusviigUzuuleh(tusuv);
 }
 };
 
@@ -172,6 +192,12 @@ if (event.keyCode === 13 || event.which === 13) {ctrlAddItem();}
 return {
     init: function(){
         console.log("Application started ....");
+        uiController.tusviigUzuuleh({
+            tusuv:0,
+            huvi:0,
+            totalExp:0,
+            totalInc:0
+        });
         setupEventListeners();
     }
 };
