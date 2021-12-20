@@ -189,14 +189,19 @@ var item = financeController.addItem(input.type,input.description, input.value);
 // 3. Олж авсан өгөгдлүүдээ веб дээрээ тохирох хэсэгт нь гаргана.
 uiController.addListItem(item,input.type);
 uiController.clearFields();
-// 4. Төсвийг тооцоолно. 
+// Төсвийг шинэээр тооцоолоод дэлгэцэнд үзүүлнэ
+updateTusuv();
+
+}
+};
+var updateTusuv = function(){
+    // 4. Төсвийг тооцоолно. 
 financeController.tusuvTootsooloh();
 // 5. Эцсийн үлдэгдэл тооцоог дэлгэцэнд гаргана.
 var tusuv = financeController.tusviigAvah();
 //6. Төсвийн тооцоог дэлгэцэнд гаргана.
 uiController.tusviigUzuuleh(tusuv);
 }
-};
 
 var setupEventListeners = function() {
     var DOM = uiController.getDOMstrings();
@@ -218,6 +223,7 @@ document.querySelector(DOM.containerDiv).addEventListener("click",function(event
         // 2. Дэлгэж дээрээс энэ элементийг устгана
         uiController.deleteListItem(id);
         // 3. Үлдэгдэл тооцоог шинэчилж харуулна.
+        updateTusuv();
     }
 });
 
