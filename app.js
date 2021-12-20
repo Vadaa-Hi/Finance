@@ -46,6 +46,13 @@ return {
         var unuudur = new Date();
 document.querySelector(DOMstrings.dateLabel).textContent=unuudur.getFullYear()+' оны ' +unuudur.getMonth() +" сарын"
     },
+    changeType: function(){
+        var fields = document.querySelectorAll(DOMstrings.inputType + ', '+DOMstrings.inputDescription + ', '+ DOMstrings.inputValue);
+        NodelistForeach(fields, function(el){
+            el.classList.toggle('red-focus');
+        });
+        document.querySelector(DOMstrings.addBtn).classList.toggle('red');
+    },
 
    getInput: function (){
        return {
@@ -286,6 +293,8 @@ var setupEventListeners = function() {
 document.addEventListener("keypress", function(event){
 if (event.keyCode === 13 || event.which === 13) {ctrlAddItem();}
 });
+
+document.querySelector(DOM.inputType).addEventListener('change',uiController.changeType);
 
 document.querySelector(DOM.containerDiv).addEventListener("click",function(event){
     var id = event.target.parentNode.parentNode.parentNode.parentNode.id;
